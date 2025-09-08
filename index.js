@@ -12,7 +12,5 @@ app.use("/api/contacts", require("./routes/contectRoutes"));
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`Your server is running on ${port}`);
+ console.log(`Your server is running on ${port}`);
 });
-
-// mongodb+srv://rjroko:<db_password>@mycluster0.ztjyay1.mongodb.net/
