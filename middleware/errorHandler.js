@@ -1,51 +1,37 @@
 const { constants } = require("../constants");
 
 const errorHandler = (err, req, res, next) => {
-  const statusCode = res.statusCode ? res.statusCode : 500;
+ if (res.headersSent) {
+  return next(err); // Avoid sending headers twice
+ }
 
-  switch (statusCode) {
-    case constants.VALIDATION_ERROR:
-      res.json({
-        title: "Validation Failed",
-        message: err.message,
-        stackTrace: err.stack,
-      });
-      break;
-    case constants.NOT_FOUND:
-      res.json({
-        title: "Not Found",
-        message: err.message,
-        stackTrace: err.stack,
-      });
-      break;
-    case constants.UNAUTHORIZED:
-      res.json({
-        title: "Un Authrized",
-        message: err.message,
-        stackTrace: err.stack,
-      });
-      break;
-    case constants.FORBIDDEN:
-      res.json({
-        title: "Forbidden",
-        message: err.message,
-        stackTrace: err.stack,
-      });
-      break;
-    case constants.SERVER_ERROR:
-      res.json({
-        title: "Server error",
-        message: err.message,
-        stackTrace: err.stack,
-      });
-      break;
+ const statusCode = res.statusCode ? res.statusCode : 500;
 
-    default:
-      console.log("No Error Found");
+ let title = "Error";
 
-      break;
-  }
-  res.json({ message: err.message, stackTrace: err.stack });
+ switch (statusCode) {
+  case constants.VALIDATION_ERROR:
+   title = "Validation Failed";
+   break;
+  case constants.NOT_FOUND:
+   title = "Not Found";
+   break;
+  case constants.UNAUTHORIZED:
+   title = "Unauthorized";
+   break;
+  case constants.FORBIDDEN:
+   title = "Forbidden";
+   break;
+  case constants.SERVER_ERROR:
+   title = "Server Error";
+   break;
+ }
+
+ res.status(statusCode).json({
+  title,
+  message: err.message,
+  stackTrace: err.stack,
+ });
 };
 
 module.exports = errorHandler;
