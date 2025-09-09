@@ -1,3 +1,5 @@
+```
+
 project-root/
 │── node_modules/ # Installed dependencies
 │── src/ # Main source code
@@ -22,3 +24,5 @@ project-root/
 │── package.json # Dependencies & scripts
 │── package-lock.json
 │── README.md # Project documentation
+
+```
