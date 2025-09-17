@@ -70,6 +70,3 @@ const currentUser = asyncHandler(async (req, res) => {
 });
 
 module.exports = { registerUser, loginUser, currentUser };
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoicmFoYXQiLCJlbWFpbCI6InRlc3R0aHJlZUBnbWFpbC5jb20iLCJpZCI6IjY4YzBhYzQ1MzY2OTNkNTM4MTc5NjQ5YSJ9LCJpYXQiOjE3NTc0NTk3ODAsImV4cCI6MTc1NzQ1OTg0MH0.dN_E6VqPNmWOOJS - pc4Kk9CJ7PjqSbAuDV_DtdV1N9k
-// ACCESS_TOKEN_SECERT = rahat123
